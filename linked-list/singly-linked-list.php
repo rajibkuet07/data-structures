@@ -1,4 +1,5 @@
 <?php
+ini_set( 'display_errors', 'On' );
 
 // Singly linked list
 
@@ -91,6 +92,15 @@ class Linked_List {
    */
   public function getHead() {
     return $this->head;
+  }
+
+  /**
+   * Set the head of the list
+   *
+   * @return void
+   */
+  public function setHead( $node ) {
+    $this->head = $node;
   }
 
   /**
@@ -266,7 +276,7 @@ class Linked_List {
   }
 
   /**
-   * Delete a node comaring the data
+   * Delete a node comparing the data
    *
    * @param mixed $target
    * @return void
@@ -296,6 +306,30 @@ class Linked_List {
       }
     }
   }
+
+  /**
+   * Reverse a linked list using recursive function
+   *
+   * @param Node $node
+   * @return void
+   */
+  public function reverse_recursive( $node ) {
+    // for n th item that means the last item of the list
+    // if the last item of list then stop recursive
+    // the last node will be the head of the reversed list
+    if ( $node === null || $node->getNext() === null ) {
+      $this->setHead( $node );
+      return;
+    }
+    $this->reverse_recursive( $node->getNext() );
+
+    // for n-1, n-2, -3 ... 2, 1, 0
+    // now the n-1 will be the next of the n th item
+    // n-2 will be next of n-1 th item
+    $recursive_previous = $node->getNext();
+    $recursive_previous->setNext( $node );
+    $node->setNext( null );
+  }
 }
 
 function wbfxpr( $data ) {
@@ -308,31 +342,35 @@ $list = new Linked_List();
 
 // insert at front
 $list->insert_at_front(3);
-echo 'Front <br />';
+echo 'Insert from front <br />';
 wbfxpr( $list->getHead() );
 
 // insert at back
 $list->insert_at_back(5);
-echo 'Back <br />';
+echo 'Insert from back <br />';
 wbfxpr( $list->getHead() );
 
 // insert after specific
 $list->insert_after_specific_node(9, 3);
-echo 'After <br />';
+echo 'Insert after specific node<br />';
 wbfxpr( $list->getHead() );
 
 // insert before specific
 $list->insert_before_specific_node(12, 5);
-echo 'After <br />';
+echo 'Insert before specific node <br />';
 wbfxpr( $list->getHead() );
 
 // insert after specific position
 $list->insert_after_specific_position(15, 3);
-echo 'After position <br />';
+echo 'Insert after specific position <br />';
 wbfxpr( $list->getHead() );
 
 // insert before specific
 $list->delete_target_node(9);
-echo 'After <br />';
+echo 'Delete a node <br />';
 wbfxpr( $list->getHead() );
 
+// reverse the list using recursive function
+$list->reverse_recursive( $list->getHead() );
+echo 'Reverse using recursive <br />';
+wbfxpr( $list->getHead() );
