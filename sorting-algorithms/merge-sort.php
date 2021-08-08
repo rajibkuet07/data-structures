@@ -1,6 +1,41 @@
 <?php
 
-// comparing the two arrays merge
+/**
+ * Merge sort function
+ *
+ * @param array $arr reference of array
+ * @param int $left
+ * @param int $right
+ * @return void
+ */
+function merge_sort( &$arr, $left, $right ) {
+  // if array has only one value or less than it is already sorted
+  if ( $left >= $right ) {
+    return;
+  }
+
+  // find the mid of the array
+  $mid = $left + floor( ( $right - $left ) / 2 );
+
+  // merge the left half part of the array
+  merge_sort( $arr, $left, $mid );
+  // merge the right half part of the array
+  merge_sort( $arr, $mid + 1, $right );
+
+  // finally sort and merge the array
+  merge( $arr, $left, $mid, $right );
+}
+
+/**
+ * Merge function
+ * Compare two array elements and sort them
+ *
+ * @param array $arr reference of array
+ * @param int $left
+ * @param int $mid
+ * @param int $right
+ * @return void
+ */
 function merge( &$arr, $left, $mid, $right ) {
   $left_arr   = [];
   $right_arr  = [];
@@ -56,24 +91,6 @@ function merge( &$arr, $left, $mid, $right ) {
   // return $arr;
 }
 
-function merge_sort( &$arr, $left, $right ) {
-  // if array has only one value or less than it is already sorted
-  if ( $left >= $right ) {
-    return;
-  }
-
-  // find the mid of the array
-  $mid = $left + floor( ( $right - $left ) / 2 );
-
-  // merge the left half part of the array
-  merge_sort( $arr, $left, $mid );
-  // merge the right half part of the array
-  merge_sort( $arr, $mid + 1, $right );
-
-  // finally sort and merge the array
-  merge( $arr, $left, $mid, $right );
-}
-
 // $arr = [ 4, 2, 3, 1 ];
 $arr = [ 3, 7, 4, 11, 6, 5, 1, 19, 8, 2, 5 ];
 $length = count( $arr );
@@ -85,4 +102,3 @@ merge_sort( $arr, 0, $length - 1 );
 echo '<pre>';
 print_r( $arr );
 echo '</pre>';
-
