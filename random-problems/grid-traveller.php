@@ -96,17 +96,14 @@ echo grid_traveller_memoization(40,60) . "\n"; // 3.3324203989825E+27
  0 0 0 0
  0 1 1 0
  0 1 0 0
- 0 0 0 0
  when i = 2, j =  3
  0 0 0 0
  0 1 1 1
  0 1 1 0
- 0 0 0 0
  when i = 3, j =  2
  0 0 0 0
  0 1 1 1
  0 1 2 0
- 0 1 0 0
  and so on
  */
 function grid_traveller_tabulation( $m, $n ) {
