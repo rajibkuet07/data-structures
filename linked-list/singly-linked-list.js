@@ -1,0 +1,4 @@
+/**
+ * Functional Approach
+ */
+

@@ -177,7 +177,7 @@ class Linked_List {
       $current_node = $this->head;
 
       // check through the list for the target node
-      // if it it last node then skip
+      // if it is last node then skip
       while (
         $current_node->getData() !== $target &&
         $current_node->getNext() !== null

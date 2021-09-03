@@ -68,9 +68,8 @@ echo "\n";
 
 /**
  * Contains duplicate second question format
- * Approach 2
- * O(nlogn) - time as sorting need nlogn
- * O(1) - space
+ * Approach 1
+ * O(n) - space
  *
  * @param array $numbers array of numbers
  * @return string
@@ -97,6 +96,8 @@ echo "\n";
 /**
  * Contains duplicate second question format
  * Approach 2
+ * O(nlogn) - time as sorting need nlogn
+ * O(1) - space
  *
  * @param array $numbers array of numbers
  * @return string

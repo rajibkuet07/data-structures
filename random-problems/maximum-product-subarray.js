@@ -38,3 +38,44 @@ const maxProduct = nums => {
 
 const max = maxProduct([2, -1, 3, -2, -4, 7]);
 console.log(max);
+
+const threeSum = nums => {
+	// [-1, 0, 1, 2, -1, -4]
+
+	let result = [];
+
+	// return if item count is less than 3
+	if (nums.length < 3) return result;
+
+	nums.sort((a, b) => a - b); // [ -4, -1, -1, 0, 1, 2 ]
+	console.log(nums);
+
+	for (let [index, number] of nums.entries()) {
+		let [left, right] = [index + 1, nums.length - 1];
+
+		if (number > 0) return result;
+
+		if (index > 0 && nums[index] === nums[index - 1]) continue;
+
+		while (left < right) {
+			let sum = number + nums[left] + nums[right];
+			console.log(number, left, right, sum);
+
+			if (sum > 0) {
+				right--;
+			} else if (sum < 0) {
+				left++;
+			} else {
+				console.log('Here');
+				result.push([number, nums[left], nums[right]]);
+				left++;
+				while (nums[left] === nums[left - 1] && left < right) {
+					left++;
+				}
+			}
+		}
+	}
+	return result;
+};
+const sum = threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]);
+console.log(sum);
