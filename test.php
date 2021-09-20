@@ -1,15 +1,21 @@
 <?php
-// you can write to stdout for debugging purposes, e.g.
-// print "this is a debug message\n";
+/**
+ * Suppose you have a sentence containing full details of image each line.
+ * Each line contains image name, location and time.
+ * Now write a program to create a string that contains the location with number and extension.
+ * EX: photo.jpg, Warsaw, 2013-09-05 14:08:15
+ *    Warsaw1.jpg
+ * If location appears more than 10 times than pad 0 before the number less than 10
+ */
 
 function solution($S) {
   // write your code in PHP7.0
-  $sentances = explode( '\n', $S ); // split the sentances
-  
+  $sentences = explode( '\n', $S ); // split the sentences
+
   $photo_names = [];
   $collection = [];
-  foreach ( $sentances as $sentance ) {
-      $words = explode( ', ', $sentance );
+  foreach ( $sentences as $sentence ) {
+      $words = explode( ', ', $sentence );
       $ext = explode( '.',  $words[0] )[1]; // extension
       if ( ! isset( $collection[$words[1]] ) ) {
         $collection[$words[1]] = 0;
@@ -25,7 +31,7 @@ function solution($S) {
       $str = $str . $name . PHP_EOL;
       print_r( $str );
   }
-  
+
   //print $str;
   //var_dump( $str );
   return $str;

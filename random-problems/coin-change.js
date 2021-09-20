@@ -40,11 +40,11 @@ coinChange_I(3, 0.01); // should return [4,0,2,1,1,2]
 coinChange_I(4, 3.14); // should return [1,0,1,1,1,0]
 coinChange_I(0.45, 0.34); // should return [1,0,1,0,0,0]
 
-// Toptal question answer
 const getChange = (money, price) => {
 	const coins = [1, 5, 10, 25, 50, 100]; // 1cent, 5cent, 10cent ... 1dollar
 
-	let change = (money - price) * 100; // converted into cent
+	let change = Math.round((money - price) * 100); // converted into cent
+	console.log(change);
 
 	for (let i = coins.length - 1; i >= 0; i--) {
 		let count = Math.floor(change / coins[i]);
@@ -52,9 +52,12 @@ const getChange = (money, price) => {
 		coins[i] = count;
 	}
 
-	return coins;
+	console.log(coins);
 };
 
 console.log('Find the coin changes');
-const findChange = getChange(5, 0.99);
-console.log(findChange);
+getChange(5, 0.99);
+getChange(3.14, 1.99); // should return [0,1,1,0,0,1]
+getChange(3, 0.01); // should return [4,0,2,1,1,2]
+getChange(4, 3.14); // should return [1,0,1,1,1,0]
+getChange(0.45, 0.34); // should return [1,0,1,0,0,0]
